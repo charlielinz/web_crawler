@@ -37,10 +37,10 @@ def get_info(url):
 
 
 """
-enter how many pages of latest articles you want to below
+enter how many pages of latest articles you want to grab below
 """
 
-number_of_pages = 20
+number_of_pages = 10
 
 for page in range(number_of_pages):
     response = requests.get(url)
@@ -52,18 +52,26 @@ for page in range(number_of_pages):
     get_info(url)
 
 
+print("")
+
 for num in range(len(nice_movie_list)):
-    print(nice_movie_list[num], nice_movie_link_list[num])
+    print(nice_movie_list[num])
+    print(nice_movie_link_list[num])
+    print(""*60)
     num += num
 
 print("-"*60)
 
 for num in range(len(normal_movie_list)):
-    print(normal_movie_list[num], normal_movie_link_list[num])
+    print(normal_movie_list[num])
+    print(normal_movie_link_list[num])
+    print(""*60)
     num += num
 
 print("-"*60)
 
 for num in range(len(bad_movie_list)):
-    print(bad_movie_list[num], bad_movie_link_list[num])
+    print(bad_movie_list[num])
+    print(bad_movie_link_list[num])
+    print(""*60)
     num += num
