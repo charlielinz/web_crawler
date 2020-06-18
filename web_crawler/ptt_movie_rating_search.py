@@ -2,6 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import io
 import time
+import unicodedata
+
+
+def chr_width(c):
+    if unicodedata.east_asian_width(c) in ('F', 'W', 'A'):
+        return 2
+    else:
+        return 1
+
 
 url = "https://www.ptt.cc/bbs/movie/index.html"
 nice_movie_list = []
@@ -55,23 +64,32 @@ for page in range(number_of_pages):
 print("")
 
 for num in range(len(nice_movie_list)):
-    print(nice_movie_list[num])
-    print(nice_movie_link_list[num])
-    print(""*60)
+    length = 0 
+    for word in nice_movie_list[num]:
+        length += chr_width(word)
+    nice_movie_list[num] += ' '*(50-length)
+    print(nice_movie_list[num],nice_movie_link_list[num])
+    print("")
     num += num
 
 print("-"*60)
 
 for num in range(len(normal_movie_list)):
-    print(normal_movie_list[num])
-    print(normal_movie_link_list[num])
-    print(""*60)
+    length = 0 
+    for word in normal_movie_list[num]:
+        length += chr_width(word)
+    normal_movie_list[num] += ' '*(50-length)
+    print(normal_movie_list[num],normal_movie_link_list[num])
+    print("")
     num += num
 
 print("-"*60)
 
 for num in range(len(bad_movie_list)):
-    print(bad_movie_list[num])
-    print(bad_movie_link_list[num])
+    length = 0 
+    for word in bad_movie_list[num]:
+        length += chr_width(word)
+    bad_movie_list[num] += ' '*(50-length)
+    print(bad_movie_list[num],bad_movie_link_list[num])
     print(""*60)
     num += num
